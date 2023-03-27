@@ -12,8 +12,8 @@ async function getClientes() {
   return clientes;
 }
 
-async function getCliente(clientId) {
-  const cliente = await ClienteRepository.getCliente(clientId);
+async function getCliente(clienteId) {
+  const cliente = await ClienteRepository.getCliente(clienteId);
   if (!cliente) {
     throw new Error('O Cliente ID informado não existe.');
   }
@@ -28,7 +28,8 @@ async function updateCliente(cliente) {
 async function deleteCliente(clienteId) {
   await getCliente(clienteId);
   return await ClienteRepository.deleteCliente(clienteId);
-  // tarefa: se o cliente tiver compra, o registro não pode ser apagado
+  // antes de excluir um cliente, verificar se existem vendas
+  // cadastradas para ele. Caso exista, bloquear a exclusão
 }
 
 export default {

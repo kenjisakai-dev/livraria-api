@@ -10,7 +10,11 @@ async function insertCliente(cliente) {
 
 async function getClientes() {
   try {
-    return await Cliente.findAll();
+    return await Cliente.findAll({
+      attributes: {
+        exclude: ['senha'],
+      },
+    });
   } catch (err) {
     throw err;
   }
@@ -18,7 +22,11 @@ async function getClientes() {
 
 async function getCliente(clienteId) {
   try {
-    return await Cliente.findByPk(clienteId);
+    return await Cliente.findByPk(clienteId, {
+      attributes: {
+        exclude: ['senha'],
+      },
+    });
   } catch (err) {
     throw err;
   }
