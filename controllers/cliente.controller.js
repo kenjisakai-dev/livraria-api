@@ -10,9 +10,7 @@ async function createCliente(req, res, next) {
       !cliente.telefone ||
       !cliente.endereco
     ) {
-      throw new Error(
-        'O Nome, Email, Senha, Telefone e Endereço são obrigatórios.'
-      );
+      throw new Error('O Nome, Email, Senha, Telefone e Endereço são obrigatórios.');
     }
     res.send(await ClienteService.createCliente(cliente));
   } catch (err) {
@@ -38,7 +36,11 @@ async function getCliente(req, res, next) {
 
 async function updateCliente(req, res, next) {
   try {
-    res.send(await ClienteService.updateCliente(req.body));
+    let cliente = req.body;
+    if (!cliente.clienteId) {
+      throw new Error('O Cliente ID é obrigatório.');
+    }
+    res.send(await ClienteService.updateCliente(cliente));
   } catch (err) {
     res.status(400).send({ erro: err.message });
   }
