@@ -34,9 +34,9 @@ async function updateLivro(req, res, next) {
     if (!livro.livroId) {
       throw new Error('O Livro ID é obrigatório.');
     }
-    if (livro.nome || livro.autorId) {
-      throw new Error('O Nome e Autor ID não pode ser alterado.');
-    }
+    // if (livro.nome || livro.autorId) {
+    //   throw new Error('O Nome e Autor ID não pode ser alterado.');
+    // }
     res.send(await LivroService.updateLivro(livro));
   } catch (err) {
     res.status(400).send({ erro: err.message });

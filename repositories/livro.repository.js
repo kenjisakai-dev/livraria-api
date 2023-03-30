@@ -26,11 +26,17 @@ async function getLivro(livroId) {
 
 async function updateLivro(livro) {
   try {
-    await Livro.update(livro, {
-      where: {
-        livroId: livro.livroId,
+    await Livro.update(
+      {
+        valor: livro.valor,
+        estoque: livro.estoque,
       },
-    });
+      {
+        where: {
+          livroId: livro.livroId,
+        },
+      }
+    );
     return await getLivro(livro.livroId);
   } catch (err) {
     throw err;

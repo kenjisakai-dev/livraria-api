@@ -1,4 +1,3 @@
-import Livro from '../model/livro.model.js';
 import LivroInfoService from '../services/livroInfo.service.js';
 
 async function createLivroInfo(req, res, next) {
