@@ -12,10 +12,12 @@ app.use(express.json());
 app.use(
   basicAuth({
     authorizer: (username, password) => {
-      const usernameAuth = basicAuth.safeCompare(username, 'admin');
-      const passwordAuth = basicAuth.safeCompare(password, '123');
+      if (username === 'admin') {
+        const usernameAdm = basicAuth.safeCompare(username, 'admin');
+        const passwordAdm = basicAuth.safeCompare(password, '123');
 
-      return usernameAuth && passwordAuth;
+        return usernameAdm && passwordAdm;
+      }
     },
   })
 );
@@ -29,3 +31,5 @@ app.use('/vendas', VendaRouter);
 app.listen(3030, () => {
   console.log('API Started!');
 });
+
+export default app;
