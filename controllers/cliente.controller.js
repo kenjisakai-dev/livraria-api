@@ -49,7 +49,7 @@ async function updateCliente(req, res, next) {
 async function deleteCliente(req, res, next) {
   try {
     res.send({
-      message: 'O Cliente ID informado foi deletedo.',
+      message: 'O Cliente ID informado foi deletado.',
       cliente: await ClienteService.deleteCliente(req.params.id),
     });
   } catch (err) {

@@ -1,5 +1,6 @@
 import LivroRepository from '../repositories/livro.repository.js';
 import LivroInfoRepository from '../repositories/livroInfo.repository.js';
+import VendaRepository from '../repositories/venda.repository.js';
 import AutorService from '../services/autor.service.js';
 
 async function createLivro(livro) {
@@ -42,9 +43,13 @@ async function updateLivro(livro) {
 
 async function deleteLivro(livroId) {
   await getLivro(livroId);
+
+  const vendas = await VendaRepository.getVendasByLivroId(livroId);
+  if (vendas.length > 0) {
+    throw new Error('O Livro ID informado tem vendas cadastradas.');
+  }
+
   return await LivroRepository.deleteLivro(livroId);
-  // Exclusão de um livro (antes de excluir um livro, verificar se
-  // existem vendas realizadas para ele. Caso exista, bloquear a exclusão
 }
 
 export default {

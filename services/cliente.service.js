@@ -1,4 +1,5 @@
 import ClienteRepository from '../repositories/cliente.repository.js';
+import VendaRepository from '../repositories/venda.repository.js';
 
 async function createCliente(cliente) {
   return await ClienteRepository.insertCliente(cliente);
@@ -27,9 +28,13 @@ async function updateCliente(cliente) {
 
 async function deleteCliente(clienteId) {
   await getCliente(clienteId);
+
+  const vendas = await VendaRepository.getVendasByClienteId(clienteId);
+  if (vendas.length > 0) {
+    throw new Error('O Cliente ID informado possui compras cadastradas.');
+  }
+
   return await ClienteRepository.deleteCliente(clienteId);
-  // antes de excluir um cliente, verificar se existem vendas
-  // cadastradas para ele. Caso exista, bloquear a exclusão
 }
 
 export default {
