@@ -1,22 +1,28 @@
 {
-  "name": "livraria-api",
-  "version": "1.0.0",
-  "description": "CRUD livraria API",
-  "main": "index.js",
-  "scripts": {
-    "test": "jest"
-  },
-  "author": "Kenji Sakai",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.18.2",
-    "express-basic-auth": "^1.2.1",
-    "mongoose": "^7.0.3",
-    "pg": "^8.10.0",
-    "sequelize": "^6.30.0"
-  },
-  "type": "module",
-  "devDependencies": {
-    "jest": "^29.5.0"
-  }
+    "name": "livraria-api",
+    "version": "1.0.0",
+    "description": "livraria API",
+    "main": "server.js",
+    "type": "module",
+    "scripts": {
+        "test:cliente": "cross-env NODE_ENV=TEST node --experimental-vm-modules ./test/cliente.spec.js",
+        "test:autor": "cross-env NODE_ENV=TEST node --experimental-vm-modules ./test/autor.spec.js",
+        "test:livro": "cross-env NODE_ENV=TEST node --experimental-vm-modules ./test/livro.spec.js",
+        "test:livroinfo": "cross-env NODE_ENV=TEST node --experimental-vm-modules ./test/livroInfo.spec.js",
+        "test:venda": "cross-env NODE_ENV=TEST node --experimental-vm-modules ./test/venda.spec.js",
+        "start": "cross-env NODE_ENV=DEV node --watch server.js"
+    },
+    "author": "Kenji Sakai",
+    "license": "ISC",
+    "dependencies": {
+        "dotenv": "^16.4.7",
+        "express": "^4.18.2",
+        "mongoose": "^7.0.3",
+        "mysql2": "^3.11.5",
+        "sequelize": "^6.30.0"
+    },
+    "devDependencies": {
+        "cross-env": "^7.0.3",
+        "supertest": "^7.0.0"
+    }
 }
