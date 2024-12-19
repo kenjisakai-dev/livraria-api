@@ -14,9 +14,11 @@ async function obterInfoVenda(cod_venda) {
     try {
         return await Venda.findOne({
             where: { cod_venda },
+            attributes: { exclude: ['cod_cliente', 'cod_livro'] },
             include: [
                 {
                     model: Cliente,
+                    attributes: { exclude: ['senha'] },
                 },
                 {
                     model: Livro,

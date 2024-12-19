@@ -65,22 +65,9 @@ async function criarAvaliacao(req, res, next) {
     }
 }
 
-async function obterAvaliacoes(req, res, next) {
-    try {
-        const resposta = await livroInfoService.obterLivroInfo(
-            req.params.cod_livro,
-        );
-
-        return res.status(200).send(resposta.livroInfo);
-    } catch (err) {
-        next(err);
-    }
-}
-
 export default {
     criarLivroInfo,
     obterLivroInfo,
     atualizarLivroInfo,
     criarAvaliacao,
-    obterAvaliacoes,
 };

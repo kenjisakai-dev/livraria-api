@@ -1,5 +1,6 @@
 import Livro from '../model/livro.model.js';
 import Autor from '../model/autor.model.js';
+import Venda from '../model/venda.model.js';
 
 async function criarLivro(livro) {
     try {
@@ -19,14 +20,32 @@ async function obterLivro(cod_livro) {
 
 async function obterInfoLivro(cod_livro) {
     try {
-        return await Livro.findOne({
+        const livroInfo = await Livro.findOne({
             where: { cod_livro },
+            attributes: { exclude: ['cod_autor'] },
             include: [
                 {
                     model: Autor,
                 },
+                {
+                    model: Venda,
+                    attributes: { exclude: ['cod_cliente', 'cod_livro'] },
+                },
             ],
         });
+
+        const resposta = {
+            cod_livro: livroInfo.cod_livro,
+            nome: livroInfo.nome,
+            valor: livroInfo.valor,
+            estoque: livroInfo.estoque,
+            createdAt: livroInfo.createdAt,
+            updatedAt: livroInfo.updatedAt,
+            autor: livroInfo.autore,
+            vendas: livroInfo.vendas,
+        };
+
+        return resposta;
     } catch (erro) {
         throw new Error(erro.message);
     }

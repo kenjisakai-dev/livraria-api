@@ -1,5 +1,6 @@
 import Cliente from '../model/cliente.model.js';
 import Venda from '../model/venda.model.js';
+import Livro from '../model/livro.model.js';
 
 async function criarCliente(cliente) {
     try {
@@ -28,6 +29,12 @@ async function obterInfoCliente(cod_cliente) {
             include: [
                 {
                     model: Venda,
+                    attributes: { exclude: ['cod_cliente', 'cod_livro'] },
+                    include: [
+                        {
+                            model: Livro,
+                        },
+                    ],
                 },
             ],
         });

@@ -8,6 +8,5 @@ router.get('/:cod_livro', livroInfoController.obterLivroInfo);
 router.patch('/atualizar', livroInfoController.atualizarLivroInfo);
 
 router.post('/avaliacao/cadastrar', livroInfoController.criarAvaliacao);
-router.get('/avaliacao/:cod_livro', livroInfoController.obterAvaliacoes);
 
 export default router;

@@ -1,4 +1,4 @@
-import Sequelize, { DataTypes } from 'sequelize';
+import Sequelize from 'sequelize';
 import db from '../repositories/db.js';
 import Autor from './autor.model.js';
 

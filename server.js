@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import sequelize from './src/repositories/db.js';
 import clienteRouter from './src/router/cliente.route.js';
 import vendaRouter from './src/router/venda.route.js';
@@ -8,6 +9,7 @@ import livroInfoRouter from './src/router/livroInfo.route.js';
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 app.post('/database/create', async (req, res) => {
     await sequelize.sync();
