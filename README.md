@@ -12,9 +12,6 @@ A Livraria API permite o gerenciamento de uma plataforma de vendas de livros que
 
 ![alt text](docs/der-livraria.png)
 
-        "cross-env": "^7.0.3",
-        "supertest": "^7.0.0"
-
 ## 🚀 Tecnologias Utilizadas
 
 -   **`express`**  
